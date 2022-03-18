@@ -6,13 +6,13 @@ We'll be using the pandas (short for panels of data) module to analyze a large d
 1. The conventional way to import the pandas module is below. Note that the "as pd" part is optional (but widely used). You may want to run your code after importing pandas to let replit install it.
 import pandas as pd
 """
-
+import pandas as pd
 
 """
 2. This folder contains a large .csv (spreadsheet) file named ign.csv. Import the data stored in the csv as a dataframe to Python and store it in a variable. The indices should be the names of the games, not the integers starting from 0 (you'll have to look at the .csv file to see which column the game titles are.)
 <variable> = pd.read_csv('<filename/url>', index_col = <column number>)
 """
-
+question_2 = pd.read_csv('ign.csv', index_col = 2)
 
 """
 3. Recall how you can index dataframe columns by their column name. For example, reviews['release_year'] would return a dataframe containing only the index (game title) and the year that game was released.
@@ -20,30 +20,30 @@ import pandas as pd
 The code framework below allows pandas to identify the unique values in a column. Use that to find all the different score phrases that are used. Print the result.
 <var> = <dataframe column>.unique()
 """
-
+question_3 = question_2['score_phrase'].unique()
 
 """
 4. It'd be nice to now how many games were described as great, awful, painful, and so on. Use the .value_counts() function to find that, and print the result.
 <var> = <dataframe column>.value_counts()
 """
-
+question_4 = question_2['score_phrase'].value_counts()
 
 """
 5. I don't know about you, but I'm not sure which is worse, unbearable or painful. We can loop through each unique score phrase, create a dataframe containing games with that score phrase, and find those average scores. This will involve a for loop, Boolean indexing, and the .mean() function. Some helpful code is below.
 <dataframe>[<dataframe>["<column name>"]==<string>]["<column name>"].mean()
 """
 
-
 """
 for phrase in phrases:
   print(phrase, reviews[reviews["score_phrase"]==phrase]["score"].mean())
 """
-
+for phrase in question_3:
+  question_5 = question_2[question_2["score_phrase"]==phrase]["score"].mean() 
 
 """
 6. Use the .value_counts() function to determine which year in the dataset had the most game releases.
 """
-
+question_6 = question_2['release_year'].value_counts()
 
 """
 7. Use the .value_counts() function to determine in which month most games are released.
